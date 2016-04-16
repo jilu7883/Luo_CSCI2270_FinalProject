@@ -1,9 +1,3 @@
 # Luo_CSCI2270_FinalProject
 
-      This project will make the trade easier by collect data from previous tradin . 
-      I get this idea from my father, by he always seem tired to collect the data and 
-      search what he want(it is a mass when you find of these object type with similar number).
-      
-      
-      So I want to create this project to help him to save time to find what he have trade, how 
-      does the price change....()
+  My project will work like a search engine for business, so they can add the product individually or with the file. When customers need any product, they can search it with product’s properties.  More precisely, I will make a search engineer for my father to trading the galley proof. There are many different types of wool top, they have different gross, tare, nett. And it takes so many time to calculate how to mix different types of wool top and got what customers want. 
