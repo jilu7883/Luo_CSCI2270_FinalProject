@@ -1,6 +1,7 @@
 # Luo_CSCI2270_FinalProject
 
  My project is an externsion for the binary tree.The project have ability to insert file when you want, and print the binary tree in level order like follow:
+    
      a                     
    /  \                     
   b    c                     
