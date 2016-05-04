@@ -11,7 +11,9 @@ WoolTree::WoolTree()
 WoolTree::~WoolTree()
 {
     //dtor
+    if (treeBuilt()){
     DeleteAll(root);
+    }
 }
 
 
@@ -21,7 +23,7 @@ void WoolTree::printWoolInventory(WoolNode* node)
     {
         printWoolInventory(node->leftChild);
     }
-
+    
     cout<<"Wool: "<<node->type<<"Quantity: "<<node->quantity<<"Clean_weight: "<<node->clean_weight<<" Micron: "<<node->micron<<"Hauteur meter: "<<node->hauteur_meter<<endl;
     if(node->rightChild!=NULL)
     {
@@ -122,7 +124,7 @@ void WoolTree::rentWool(std::string type)
         {
             node=node->rightChild;
         }
-
+        
         else
         {
             node->quantity--;
@@ -152,7 +154,7 @@ int WoolTree::countWoolNodes(WoolNode *node)
     if(node->leftChild!=NULL)
     {
         c+=countWoolNodes(node->leftChild);//left
-
+        
     }
     c++;//itself
     if(node->rightChild!=NULL)
@@ -160,7 +162,7 @@ int WoolTree::countWoolNodes(WoolNode *node)
         // c++;
         c+=countWoolNodes(node->rightChild);//right
     }
-
+    
     return c;
 }
 
@@ -170,6 +172,7 @@ int WoolTree::countWoolNodes()
 {
     int c=countWoolNodes(root);
     cout<<"Tree contains: "<<c<<" Wools."<< endl;
+    return c;
 }
 
 
@@ -205,7 +208,7 @@ void WoolTree::deleteWoolNode(std::string type)
         {
             node->parent->rightChild=NULL;
         }
-
+        
         else
         {
             node->parent->leftChild=NULL;
@@ -227,7 +230,7 @@ void WoolTree::deleteWoolNode(std::string type)
         }
         else
             node->parent->leftChild=node->rightChild;
-
+        
         delete node;
     }
     else if(node->leftChild!=NULL&&node->rightChild==NULL)
@@ -245,10 +248,10 @@ void WoolTree::deleteWoolNode(std::string type)
         }
         else
             node->parent->rightChild=node->leftChild;
-
+        
         delete node;
     }
-
+    
     //two children
     else
     {
@@ -272,7 +275,7 @@ void WoolTree::deleteWoolNode(std::string type)
                 node->parent->rightChild=mins;
             }
         }
-
+        
         if(node->rightChild!=mins)
         {
             node->rightChild->parent=mins;
@@ -292,10 +295,10 @@ void WoolTree::deleteWoolNode(std::string type)
             mins->parent=node->parent;
             mins->leftChild=node->leftChild;
         }
-
+        
         delete node;
     }
-
+    
 }
 
 
@@ -309,10 +312,10 @@ void WoolTree::DeleteAll(WoolNode * node)
     {
         DeleteAll(node->rightChild);
     }
-
+    
     cout<<"Deleting: "<<node->type<<endl;
     delete node;
-
+    
 }
 
 
@@ -324,7 +327,7 @@ void WoolTree::insertfile(std::string filename)
     int quantity,clean_weight,micron,hauteur_meter;
     inFile.open(filename.c_str());
     string wool;
-
+    
     if(inFile.good())
     {
         while( getline(inFile, wool)  )  //read/get every line of the file and store it
@@ -341,17 +344,17 @@ void WoolTree::insertfile(std::string filename)
             hauteur_meter=atoi(hauteur_meter_s.c_str());
             addWoolNode(type_s,quantity,clean_weight,micron,hauteur_meter);
             /*  cout<<ranking<<endl;
-              cout<<title<<endl;
-              cout<<releaseYear<<endl;
-              cout<<quantity<<endl;*/
-
+             cout<<title<<endl;
+             cout<<releaseYear<<endl;
+             cout<<quantity<<endl;*/
+            
         }
     }
     else
     {
         cout<<"Error to open the file!"<<endl;
     }
-
+    
 }
 
 int WoolTree::maxDepth(WoolNode * node)
@@ -359,7 +362,7 @@ int WoolTree::maxDepth(WoolNode * node)
     if(node==NULL||(node->leftChild==NULL&&node->rightChild==NULL)) return 0;
     int leftDepth =maxDepth(node->leftChild);
     int rightDepth=maxDepth(node->rightChild);
-
+    
     return leftDepth>rightDepth?leftDepth+1:rightDepth + 1;
 }
 
@@ -384,10 +387,10 @@ int WoolTree::minDepth(WoolNode *node)
 {
     if(node == NULL || (node->leftChild == NULL && node->rightChild == NULL))
         return 0;
-
+    
     int leftDepth = minDepth(node->leftChild);
     int rightDepth = minDepth(node->rightChild);
-
+    
     return leftDepth < rightDepth ?leftDepth + 1 : rightDepth + 1;
 }
 
@@ -423,17 +426,17 @@ void WoolTree::mirror(WoolNode * node)
     else
     {
         WoolNode * temp;
-
+        
         // do the subtrees
         mirror(node->leftChild);
         mirror(node->rightChild);
-
+        
         // swap the pointers in this node
         temp = node->leftChild;
         node->leftChild = node->rightChild;
         node->rightChild = temp;
     }
-
+    
 }
 
 void WoolTree::printLevelOrder(WoolNode *node)
@@ -458,15 +461,25 @@ void WoolTree::printLevelOrder(WoolNode *node)
         }
         if (nodesInCurrentLevel == 0)
         {
-
+            
         }
-            nodesInCurrentLevel = nodesInNextLevel;
-            nodesInNextLevel = 0;
-        }
+        nodesInCurrentLevel = nodesInNextLevel;
+        nodesInNextLevel = 0;
     }
+}
 
 
 void WoolTree::printLevelOrder()
 {
     printLevelOrder(root);
+}
+
+bool WoolTree::treeBuilt(){
+    if (root != NULL){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
 }

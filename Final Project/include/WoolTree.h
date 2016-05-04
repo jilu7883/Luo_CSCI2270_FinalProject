@@ -25,7 +25,7 @@ struct WoolNode
     WoolNode *leftChild;
     WoolNode *rightChild;
     WoolNode() {};
-
+    
     WoolNode(std::string in_type,int in_quantity,int in_clean_weight,int in_micron,int in_hauteur_meter)
     {
         type = in_type;
@@ -37,12 +37,12 @@ struct WoolNode
         leftChild = NULL;
         rightChild = NULL;
     }
-
+    
 };
 
 class WoolTree
 {
-
+    
 public:
     WoolTree();
     ~WoolTree();
@@ -58,9 +58,10 @@ public:
     void maxDepth();
     void mirror(WoolNode * node);
     void printLevelOrder();
-
+    bool treeBuilt();
+    
 protected:
-
+    
 private:
     void DeleteAll(WoolNode * node); //use this for the post-order traversal deletion of the tree
     void printWoolInventory(WoolNode * node);
@@ -72,6 +73,6 @@ private:
     WoolNode* leftMost(WoolNode *node);
     WoolNode *root;
     void printWoolpostorder(WoolNode * node);
-     void printLevelOrder(WoolNode *node);
+    void printLevelOrder(WoolNode *node);
 };
 #endif // WoolTREE_H
