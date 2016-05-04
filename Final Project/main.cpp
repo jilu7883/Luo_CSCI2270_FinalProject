@@ -22,42 +22,67 @@ int main()
     while(!quit)
     {
         display();
-
+        
         cin>>option;
-           cin.clear();
-            cin.ignore(10000,'\n');
+        cin.clear();
+        cin.ignore(10000,'\n');
         //while( !inFile.eof() )  //read/get every line of the file and store it{
-
+        
         if(option==1)  //find a Wool
         {
             cout<<"Enter type name:"<<endl;
-
+            
+            if(ele1.treeBuilt()){
             getline(cin,name);
             ele1.findWool(name);
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==2)
         {
+            if(ele1.treeBuilt()){
             cout<<"Enter type name:"<<endl;
             getline(cin,name);
             ele1.rentWool(name);
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==3)
         {
+            if(ele1.treeBuilt()){
             ele1.printWoolInventory();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==4)
         {
+            if(ele1.treeBuilt()){
             cout << "Enter type name:" << endl;
             getline(cin,name);
             ele1.deleteWoolNode(name);
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==5)
         {
+            if(ele1.treeBuilt()){
             ele1.countWoolNodes();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==6)
@@ -69,26 +94,42 @@ int main()
         }
         else if(option==7)
         {
+            if(ele1.treeBuilt()){
             ele1.maxDepth();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==8)
         {
+            if(ele1.treeBuilt()){
             ele1.minDepth();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==9)
         {
+            if(ele1.treeBuilt()){
             ele1.printWoolpostorder();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         /*else if(option==1)
-        {
-            ele1.mirror(root);
-            quit=false;
-        }*/
+         {
+         ele1.mirror(root);
+         quit=false;
+         }*/
         else if(option==10)
         {
+            if(ele1.treeBuilt()){
             cout << "What's the type of product"<<endl;
             getline(cin,type_s);
             cout <<"How many do you have?"<<endl;
@@ -104,11 +145,20 @@ int main()
             micron=atoi(micron_s.c_str());
             hauteur_meter=atoi(hauteur_meter_s.c_str());
             ele1.addWoolNode(type_s,quantity,clean_weight,micron,hauteur_meter);
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==11)
         {
+            if(ele1.treeBuilt()){
             ele1.printLevelOrder();
+            }
+            else{
+                cout << "Please insert a file first." << endl;
+            }
             quit=false;
         }
         else if(option==12)
@@ -139,5 +189,5 @@ void display()
     cout << "10. Add a wool"<<endl;
     cout << "11. Print in level"<<endl;
     cout << "12. Quit" << endl;
-
+    
 }
